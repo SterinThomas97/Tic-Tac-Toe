@@ -1,60 +1,36 @@
 import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StyleSheet,Text, View} from 'react-native';
+import Home from './screens/Home';
+import Rules from './screens/Rules';
+import Credits from './screens/Credits';
 
 
-const steps = ['0', '', '0', 'X', 'X', '0', 'X', '', '0'];
+const Stack = createNativeStackNavigator();
 export default function App() {
-    return (
-        <View style={styles.appContainer}>
-          <View style={styles.mainContainer}>
+    return(
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Home" component={Home} options={
             {
-              steps.map((s, i) => (
-                  <View style={styles.ticTacBox} key={i}>
-                      <Text style={styles.textStyle}>{s}</Text>
-                  </View>))
+              title : 'Home'
+
             }
-            
-          </View>
-        </View>
-        
+          }/>
+          <Stack.Screen name="Rules" component={Rules} options={
+            {
+              title : 'Rules'
+            }
+          }/>
+          <Stack.Screen name="Credits" component={Credits} options={
+            {
+              title : 'Credits'
+            }
+          }/>
+        </Stack.Navigator>
+      </NavigationContainer>
     );
 }
 
-const styles = StyleSheet.create({
-    ticTacBox : {
-        backgroundColor: 'green',
-        width: 80,
-        height: 80,
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        borderColor : 'black'
-    },
-    mainContainer: {
-        
-        padding: 50,
-        flexDirection : 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor : 'orange',
-        borderWidth : 3,
-        borderColor: 'black',
-        borderRadius: 10,
-        flexWrap:'wrap'
-    },
-    appContainer: {
-        flex: 1,
-        alignItems : 'center',
-        justifyContent: 'center',
-        backgroundColor: '#c6c9c5',
-        marginTop: 50,
-        marginLeft: 30,
-        marginRight: 30,
-        marginBottom: 50
-    },
-    textStyle: {
-        color : 'white',
-        fontSize: 40,
-        fontWeight: "bold"
-    }
-});
+
