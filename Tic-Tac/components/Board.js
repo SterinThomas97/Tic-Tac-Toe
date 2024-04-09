@@ -1,19 +1,40 @@
 
-import { View, Text, StyleSheet } from "react-native";
+import { useState } from "react";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
-const steps = ['0', '', '0', 'X', 'X', '0', 'X', '', '0'];
+
 
 function Board() {
+
+    const [boardElements, setBoardElements] = useState(['','','','','','','','','']);
+
+    function boardElementsHandler(index) {
+        const newBoardArray = [...boardElements];
+        
+        if (boardElements[index] == '') {
+            newBoardArray[index] = 'X';
+            setBoardElements(newBoardArray);
+        } else if (boardElements[index] == 'X') {
+            newBoardArray[index] = '0';
+            setBoardElements(newBoardArray);
+        } else if (boardElements[index] == '0') {
+            newBoardArray[index] = 'X';
+            setBoardElements(newBoardArray);
+        }
+    }
     return (
         <View style={styles.mainContainer}>
             {
-              steps.map((s, i) => (
+              boardElements.map((s, i) => (
+                <Pressable onPress={() => boardElementsHandler(i)}>
                   <View style={styles.ticTacBox} key={i}>
                       <Text style={styles.textStyle}>{s}</Text>
-                  </View>))
+                  </View>
+                </Pressable>
+                  )) 
             }
             
-          </View>
+        </View>
     )
 }
 

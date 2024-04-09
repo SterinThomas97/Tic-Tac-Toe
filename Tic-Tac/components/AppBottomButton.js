@@ -1,8 +1,10 @@
 
 import { View, Text, Pressable, StyleSheet } from "react-native";
-function AppBottomButton({title, onPress}) {
+
+
+function AppBottomButton({title, onPress, color}) {
     return (
-        <View style={styles.buttonContainer}>
+        <View style={[styles.buttonContainer, {backgroundColor : color}]}>
             <Pressable onPress={onPress} style={({pressed}) => pressed && styles.pressed}>
                 <View style={styles.buttonTextContainer}>
                     <Text style={styles.buttonText}>{title}</Text>
@@ -21,8 +23,7 @@ const styles = StyleSheet.create({
         opacity: 0.5
       },
       buttonContainer: {
-        padding: 10,
-        backgroundColor: 'blue',
+        padding: 2,
         borderRadius: 20
       },
       buttonTextContainer: {
